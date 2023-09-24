@@ -1,15 +1,15 @@
-from flask import Flask
+from flask import Flask, render_template
+from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
 
+bootstrap = Bootstrap(app)
 
-# this decorator registers function index() 
-# as the handler for the app root URL
 @app.route("/")
 def index():
-    return "<h1>Hello World!</h1>"
+    return render_template("index.html")
 
-# Dynamic route
 @app.route("/user/<name>")
 def user(name):
-    return f"<h1>Hello, {name}!</h1>"
+    return render_template("user.html", name=name)
+
